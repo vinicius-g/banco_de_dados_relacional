@@ -1,0 +1,24 @@
+#formularioAlterarPostagem {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    padding: 20px;
+    background-color: green;
+}
+
+#formularioAlterarPostagem.mostrar {
+    display: block;
+}
+
+.erro {
+    border: 2px solid red;
+    border-radius: 10px;
+    background-color: rgb(240, 128, 128);
+}
+
+i {
+    pointer-events: none;
+}

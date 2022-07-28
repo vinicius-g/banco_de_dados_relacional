@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/previa.css">
+    <script src="js/previa.js" defer></script>
+    <title>TESTE RELACIONAL</title>
+</head>
+
+<body>
+    <%- include("../partial/header.ejs") %>
+
+        <h1>Home</h1>
+
+        <h2>
+            Olá Usuário
+        </h2>
+
+        <form>
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo">
+
+            <label for="conteudo">Conteúdo</label>
+            <textarea id="conteudo" cols="40" rows="7"></textarea>
+
+            <button id="botaoCadastro" type="reset">Cadastrar postagem</button>
+        </form>
+
+        <h2>Postagens</h2>
+
+        <div id="postagens"></div>
+
+        <form id="formularioAlterarPostagem">
+            <label for="mudarTitulo">Título</label>
+            <input type="text" id="mudarTitulo">
+
+            <label for="mudarConteudo">Conteúdo</label>
+            <textarea id="mudarConteudo" cols="40" rows="7"></textarea>
+
+            <button data-botao-alterar type="button">Alterar postagem</button>
+        </form>
+</body>
+
+</html>

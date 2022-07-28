@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="http://localhost:2405/css/style.css">
+    <script src="http://localhost:2405/js/script.js" defer></script>
+    <title>TESTE RELACIONAL</title>
+</head>
+<body>
+    <%- include("../partial/header.ejs") %>
+
+    <a href="/deletarusuario/<%= usuario.id %>">
+        deletar conta
+    </a>
+
+    <h1>Home</h1>
+    
+    <% if (usuario.nome !== undefined) { %>
+        <h2>
+            Olá <%= usuario.nome %>
+        </h2>
+    <% } %>
+
+    <% if (erros) { 
+        var erro_titulo = ""
+        var erro_conteudo = ""
+        var erro_mudar_titulo = ""
+        var erro_mudar_conteudo = ""
+
+        erros.errors.forEach((erro) => {
+            if (erro.param === "titulo") { erro_titulo = "erro"}
+            if (erro.param === "conteudo") { erro_conteudo = "erro" }
+            if (erro.param === "mudar_titulo") { erro_mudar_titulo = "erro" }
+            if (erro.param === "mudar_conteudo") { erro_mudar_conteudo = "erro" }
+        })
+    } %>
+
+    <form action="/home/criarpostagem" method="post">
+        <label for="titulo">Título</label>
+        <input type="text" name="titulo" id="titulo" class="<%= erro_titulo %>" value="<%= valores.titulo %>">
+
+        <label for="conteudo">Conteúdo</label>
+        <textarea name="conteudo" id="conteudo" class="<%= erro_conteudo %>" rows="7" cols="40"><%= valores.conteudo %></textarea>
+        <input type="hidden" name="email" value="<%= usuario.email %>">
+
+        <input type="hidden" name="senha" value="<%= usuario.senha %>">
+
+        <button type="submit">Cadastrar postagem</button>
+    </form>
+
+    <h2>Postagens</h2>
+    <% postagens.forEach((postagem) => { %>
+        <div id="<%= postagem.id %>" data-postagem>
+            <h3 id="titulo<%= postagem.id %>">
+                <%= postagem.titulo %>
+            </h3>
+            <p id="conteudo<%= postagem.id %>">
+                <%= postagem.conteudo %>
+            </p>
+
+            <form action="/home/deletarpostagem/<%= postagem.id %>" method="post">
+                <input type="hidden" name="email" value="<%= usuario.email %>">
+
+                <input type="hidden" name="senha" value="<%= usuario.senha %>">
+
+                <button type="submit" id="deletar<%= postagem.id %>">
+                    <i class='bx bxs-trash-alt'></i>
+                </button>
+            </form>
+            
+            <button id="alterar<%= postagem.id %>">
+                <i class='bx bxs-edit-alt' ></i>
+            </button>
+        </div>
+    <% }) %>
+
+    <form action="/home/alterarpostagem" method="post" id="alterarPostagem" class="<%= estado_formulario_alterar_postagem %>">
+        <label for="mudar_titulo">Título</label>
+        <input type="text" name="mudar_titulo" id="mudar_titulo" class="<%= erro_mudar_titulo %>" value="<%= valores.mudar_titulo %>">
+
+        <label for="mudar_conteudo">Conteudo</label>
+        <textarea name="mudar_conteudo" id="mudar_conteudo" class="<%= erro_mudar_conteudo %>" rows="7" cols="40"><%= valores.mudar_conteudo %></textarea>
+
+        <input type="hidden" name="email" value="<%= usuario.email %>">
+
+        <input type="hidden" name="senha" value="<%= usuario.senha %>">
+
+        <input type="hidden" name="id_postagem" id="id_postagem" value="<%= valores.id_postagem %>">
+
+        <button type="submit">Alterar Postagem</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <title>Cadastro</title>
+</head>
+<body>
+    <%- include("../partial/header.ejs") %>
+
+    <h1>Cadastro</h1>
+
+    <form action="/cadastro" method="post">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" class="<%= erro_nome %>" value="<%= valores.nome %>">
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="<%= erro_email %>" value="<%= valores.email %>">
+
+        <label for="senha">Senha</label>
+        <input type="number" name="senha" id="senha" class="<%= erro_senha %>" value="<%= valores.senha %>">
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <% if (erro) { %>
+        <h2>
+            <%= erro %>
+        </h2>
+    <% } %>
+</body>
+</html>

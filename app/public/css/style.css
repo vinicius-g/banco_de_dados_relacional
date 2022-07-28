@@ -1,0 +1,24 @@
+#alterarPostagem {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    padding: 20px;
+    background-color: green;
+}
+
+#alterarPostagem.mostrar {
+    display: block;
+}
+
+i {
+    pointer-events: none;
+}
+
+.erro {
+    border: 2px solid red;
+    border-radius: 10px;
+    background-color: rgb(240, 128, 128);
+}
